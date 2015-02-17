@@ -14,7 +14,7 @@ class User
   property :id, Serial
   property :created_by, String
   property :name, String
-  property :email, String, :unique => true
+  property :email, String, :required => true, :unique => true
   property :password, BCryptHash, :required => true
   property :created_at, DateTime
 end
