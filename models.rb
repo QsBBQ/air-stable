@@ -1,4 +1,5 @@
 require 'data_mapper'
+require 'bcrypt'
 
 if ENV['RACK_ENV'] != 'production'
   require 'dotenv'
@@ -11,9 +12,11 @@ class User
   include DataMapper::Resource
 
   property :id, Serial
+  property :created_by, String
   property :name, String
-  property :email, String
-  property :password, String
+  property :email, String, :unique => true
+  property :password, BCryptHash, :required => true
+  property :created_at, DateTime
 end
 
 DataMapper.finalize

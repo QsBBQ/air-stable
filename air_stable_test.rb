@@ -16,4 +16,6 @@ chuck = User.first(:email => "cnorris@example.com")
 p chuck.name == "Chuck"
 p chuck.email == "cnorris@example.com"
 
-#Test
+#Test bcrypt
+puts "bycrpt hash #{chuck.password}"
+p chuck.password == "password"
