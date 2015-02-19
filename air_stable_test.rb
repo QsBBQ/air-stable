@@ -19,3 +19,9 @@ p chuck.email == "cnorris@example.com"
 #Test bcrypt
 puts "bycrpt hash #{chuck.password}"
 p chuck.password == "password"
+
+#Testing validation
+bruce = User.create({:name => "Chuck", :password => "password"})
+p bruce.saved? == false
+#Showing the list of errors
+p bruce.errors[:email] == ["Email must not be blank"]

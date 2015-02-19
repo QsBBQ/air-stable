@@ -9,6 +9,7 @@ group :development do
   gem 'rerun'
   gem 'dm-sqlite-adapter'
   gem 'dotenv'
+  gem 'faker'
 end
 
 group :production do

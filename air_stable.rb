@@ -15,6 +15,6 @@ post "/users/new" do
   if @user.saved?
     redirect "/"
   else
-    raise @user.errors.inspect
+    erb :new_user, { :layout => :default_layout }
   end
 end
