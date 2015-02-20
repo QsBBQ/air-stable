@@ -1,0 +1,10 @@
+/**
+* Styling
+**/
+
+label { display: block; }
+label input { display: block; }
+
+p.error {
+  color: red;
+}

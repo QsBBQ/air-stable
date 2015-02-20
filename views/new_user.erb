@@ -1,17 +1,18 @@
-<!Test comment>
+<!--Test comment-->
 <form action="/users/new" method="post">
   <fieldset>
       <label for="name">Nick Name:(How others see you)</label><br>
       <input type="text" name="user[name]" id="name" value="<%= @user.name %>"><br>
       <label for="email">Email Address</label><br>
-      <!I was confused why value= was needed now I understand when rerendering the view we already will have the data>
       <input type="text" name="user[email]" id="email" value="<%= @user.email %>"><br>
-      <!Note to self calling the erb partial and passing @user and :email tp the partial>
-      <%= erb :_error, { :locals => { :model => @user, :field_name => :email } } %>
+      <%= erb :_error, { :locals => { :errors => @user.errors[:email] } } %>
       <label for="password">Password</label><br>
       <input type="password" name="user[password]" id="password"><br>
-      <%= erb :_error, { :locals => { :model => @user, :field_name => :password } } %>
+      <%= erb :_error, { :locals => { :errors => @user.errors[:password] } } %>
+      <!Need to confirm password still>
+      <label for="password">Confirm Password</label><br>
+      <input type="password" name="user[password]" id="password"><br>
       <input type="submit" value="Register">
   </fieldset>
 </form>
-<p>Already a member? <a href = "/"><u>Log in!</u></a></p>
+<p>Already a member? <a href = "/">Log in!</a></p>

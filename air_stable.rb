@@ -1,11 +1,27 @@
 require 'sinatra'
+require_relative 'config/dotenv'
+require_relative 'config/session'
 require_relative 'models'
-enable :sessions
+
+
+
+
+#enable :sessions
+
+
+helpers do
+  def login(user)
+    session[:user_id] = user.id
+  end
+
+  def logged_in?
+    !session[:user_id].nil?
+  end
+end
 
 get "/" do
-  #test
   @user = User.get(session[:user_id])
-  erb :home #Fancy I can specify, { :layout => :default_layout}
+  erb :home
 end
 
 get "/users/new" do
@@ -14,8 +30,10 @@ get "/users/new" do
 end
 
 post "/users/new" do
-  @user = User.create(params[:user])
+  @user = User.new(params[:user])
+  @user.save
   if @user.saved?
+    login(@user)
     redirect "/"
   else
     erb :new_user
@@ -23,8 +41,6 @@ post "/users/new" do
 end
 
 get "/users/login" do
-  #confused crashing with no input
-  #not showing errors yet.
   @errors = session[:login_errors]
   session.delete(:login_errors)
 
@@ -37,8 +53,9 @@ post "/users/login" do
 
   user = User.first(:email => email)
 
-  if user.password == password
-    session[:user_id] = user.id
+  if user && user.password == password
+    #session[:user_id] = user.id
+    login(user)
     redirect "/"
   else
     session[:login_errors] = 'Access Denied!'
@@ -47,13 +64,12 @@ post "/users/login" do
 end
 
 get "/users/logout" do
-  #Both logout's are working curious on pro's con's
+  #Both logout's are working
   session.clear
   redirect "/"
 end
 
 delete "/users/logout" do
-  #Needed form working
   session.delete(:user_id)
   redirect "/"
 end
