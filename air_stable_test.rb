@@ -1,7 +1,8 @@
-require_relative 'models'
-require_relative 'config/dotenv'
 
-#broke my tests
+require_relative 'config/dotenv'
+require_relative 'models'
+
+
 #Test
 #Cleaning up
 User.destroy
@@ -32,7 +33,7 @@ p bruce.errors[:email] == ["Email must not be blank"]
 Stall.destroy
 
 p Stall.count == 0
-stall = Stall.create({ :title => "Test Title",
+stall = chuck.stalls.create({ :title => "Test Title",
                        :description => "The is a great Test!",
                        :city => "Utopia",
                        :state => "fantasy island",
