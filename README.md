@@ -10,8 +10,8 @@ stalls to horses on the go!
 
 1. Guest may register as a `User` -Done
 1. Guest may log in -Done
-1. `User` may create a Stall
-1. `User` may see a list of available `Stall`s
+1. `User` may create a Stall -Done
+1. `User` may see a list of available `Stall`s -Done
 1. `User` may create a pending `RentalRequest` for a `Stall`
 1. `Stall` owner may see pending `RentalRequest`s
 1. `RentalRequest`s requester may see pending `RentalRequest`s

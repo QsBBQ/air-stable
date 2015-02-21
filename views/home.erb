@@ -17,9 +17,10 @@
 <hr>
 
 <% if logged_in? %>
+  <p>Search bar goes here </p>
   <% @stalls.each do |stall| %>
     <section class="stall">
-      <h3><%= stall.title %></h3>
+      <h3><a href="/stalls/<%= stall.id %>"><%= stall.title %></a></h3>
       <p><%= stall.description %></p>
     </section>
     <hr>

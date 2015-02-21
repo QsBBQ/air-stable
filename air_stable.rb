@@ -30,7 +30,6 @@ helpers do
 end
 
 get "/" do
-  #@user = current_user
   @stalls = Stall.all
   erb :home
 end
@@ -52,6 +51,18 @@ post "/stalls/new" do
   else
     erb :new_stall
   end
+end
+
+get "/stalls/:stall_id" do
+  stall_id = params[:stall_id]
+  @stall = Stall.get(stall_id)
+  @user = User.get(@stall.creator_id)
+
+  erb :show_stall
+end
+
+get "/user/dashboard" do
+  erb :user_dashboard
 end
 
 get "/users/new" do

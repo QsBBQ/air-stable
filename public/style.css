@@ -23,3 +23,8 @@ nav { width: 30%; }
 section {
   clear: both;
 }
+
+.fullwidth {
+  width:100%;
+  display:block
+}
