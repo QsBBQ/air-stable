@@ -17,11 +17,41 @@ helpers do
   def logged_in?
     !session[:user_id].nil?
   end
+
+  def current_user
+    @current_user ||=User.get(session[:user_id])
+  end
+
+  def ensure_logged_in!
+    unless logged_in?
+      halt 403, "You must be logged in to do that!"
+    end
+  end
 end
 
 get "/" do
-  @user = User.get(session[:user_id])
+  #@user = current_user
+  @stalls = Stall.all
   erb :home
+end
+
+get "/stalls/new" do
+  if logged_in?
+    @stall = current_user.stalls.new
+    erb :new_stall
+  else
+    redirect "/"
+  end
+end
+
+post "/stalls/new" do
+  ensure_logged_in!
+  @stall = current_user.stalls.create(params["stall"])
+  if @stall.saved?
+    redirect "/"
+  else
+    erb :new_stall
+  end
 end
 
 get "/users/new" do

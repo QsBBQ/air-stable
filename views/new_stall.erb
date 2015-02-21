@@ -1,0 +1,20 @@
+<form action="/stalls/new" method="post">
+  <fieldset>
+      <label for="title">Title:</label><br>
+      <input type="text" name="stall[title]" id="name" value="<%= @stall.title %>"><br>
+      <%= erb :_error, { :locals => { :errors => @stall.errors[:title] } } %>
+      <label for="description">Description</label><br>
+      <textarea type="text" name="stall[description]" id="description" value="<%= @stall.description %>"></textarea><br>
+      <%= erb :_error, { :locals => { :errors => @stall.errors[:description] } } %>
+      <label for="city">City</label><br>
+      <input type="text" name="stall[city]" id="city"><br>
+      <%= erb :_error, { :locals => { :errors => @stall.errors[:city] } } %>
+      <label for="state">State</label><br>
+      <input type="text" name="stall[state]" id="state"><br>
+      <%= erb :_error, { :locals => { :errors => @stall.errors[:state] } } %>
+      <label for="zipcode">ZipCode</label><br>
+      <input type="text" name="stall[zipcode]" id="zipcode"><br>
+      <%= erb :_error, { :locals => { :errors => @stall.errors[:zipecode] } } %>
+      <input type="submit" value="Create Stall!">
+  </fieldset>
+</form>

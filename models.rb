@@ -11,10 +11,24 @@ class User
   property :created_by, String
   property :name, String
   property :email, String, :required => true, :unique => true
-  #Interesting password was accepting blank passwords even with required granted hashed.
-  #So added length need to revisit
   property :password, BCryptHash, :required => true #, :length => 2..20
   property :created_at, DateTime
+
+  has n, :stalls, { :child_key => [:creator_id] }
+end
+
+class Stall
+  include DataMapper::Resource
+
+  property :id, Serial
+  property :title, String, :required => true
+  property :description, String, :required => true
+  property :city, String, :required => true
+  property :state, String, :required => true
+  property :zipcode, String, :required => true
+  property :created_at, DateTime
+
+  belongs_to :creator, 'User'
 end
 
 DataMapper.finalize

@@ -1,13 +1,27 @@
 <% if @errors %>
   <%= @errors %>
 <% end %>
-<form action="/users/login" method="post">
-  <fieldset>
-      <label for="email">Email Address</label><br>
-      <input type="text" name="user[email]" id="email"<br>
-      <label for="password">Password</label><br>
-      <input type="password" name="user[password]" id="password"><br>
-      <input type="submit" value="Log In">
-  </fieldset>
-</form>
-<p>Not a member? <a href = "/users/new">Register Now!</a></p>
+<% if not logged_in? %>
+  <form action="/users/login" method="post">
+    <fieldset>
+        <label for="email">Email Address</label><br>
+        <input type="text" name="user[email]" id="email"<br>
+        <label for="password">Password</label><br>
+        <input type="password" name="user[password]" id="password"><br>
+        <input type="submit" value="Log In">
+    </fieldset>
+  </form>
+  <p>Not a member? <a href = "/users/new">Register Now!</a></p>
+<% end %>
+
+<hr>
+
+<% if logged_in? %>
+  <% @stalls.each do |stall| %>
+    <section class="stall">
+      <h3><%= stall.title %></h3>
+      <p><%= stall.description %></p>
+    </section>
+    <hr>
+  <% end %>
+<% end %>

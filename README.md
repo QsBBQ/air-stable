@@ -8,8 +8,8 @@ stalls to horses on the go!
 
 ## Functional Requirements
 
-1. Guest may register as a `User`
-1. Guest may log in
+1. Guest may register as a `User` -Done
+1. Guest may log in -Done
 1. `User` may create a Stall
 1. `User` may see a list of available `Stall`s
 1. `User` may create a pending `RentalRequest` for a `Stall`

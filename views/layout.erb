@@ -8,16 +8,16 @@
       <h1>Air Stable</h1>
       <p>Share a "Neigh"-borly stable!</p>
     </header>
+    <nav>
+      <% if logged_in? %>
+        <p>Welcome, <%= current_user.name %></p>
+        <form method="POST" action="/users/logout">
+          <input type="hidden" name="_method" value="DELETE"/>
+          <button>Log Out</button>
+        </form>
+      <% end %>
+    </nav>
     <section>
       <%= yield %>
     </section>
-    <!--I tested with an unless example but that bombed out spun a bit a little confused on that-->
-    <% if logged_in? %>
-      <form method="POST" action="/users/logout">
-        <input type="hidden" name="_method" value="DELETE"/>
-        <button>Log Out</button>
-      </form>
-      <p>Not <%= @user.email %> <a href = "/users/logout">Logout</a></p>
-      <p>Welcome, <%= @user.email %> </p>
-    <% end %>
   </body>
