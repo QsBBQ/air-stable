@@ -50,8 +50,10 @@ stall = chuck.stalls.create({ :title => "Test Title",
 p Stall.count == 1
 p stall.title == "Test Title"
 
+p RentalRequest.count == 0
+#chucks_stall = Stall.first(:title => "Test Title")
 #Test rental requests
-# request = bruce.stall.rental_requests.create({
+# request = bruce.chucks_stall.rental_requests.create({
 #                                         :date => "02/23/2015",
 #                                         :message => "test message"
 #                                        })
@@ -59,7 +61,7 @@ p stall.title == "Test Title"
 #p bruce.id
 #p stall.id
 
-p RentalRequest.count == 0
+
 request = RentalRequest.create({
                                 #:date => "02/23/2015",
                                 :message => "test message",

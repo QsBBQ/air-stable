@@ -66,13 +66,20 @@ post "/stalls/:stall_id/rental_request" do
   ensure_logged_in!
   stall_id = params[:stall_id]
   stall = Stall.get(stall_id)
-  @user = User.get(@stall.creator_id)
-  rental_request = current_user.stall.rental_requests.create(params[rental])
-  if rental_request.saved?
-    redirect "/"
-  else
-    erb :rental_request
-  end
+  #rental_request = current_user.stall.rental_requests.create(params[rental])
+  params.inspect
+  # rental_request = RentalRequest.create({
+  #                                        :message => params[message],
+  #                                        :date => params[date],
+  #                                        :user => current_user,
+  #                                        :stall => stall
+  #                                      })
+  # if rental_request.saved?
+  #   redirect "/"
+  # else
+  #   erb :rental_request
+  # end
+  #redirect "/"
 end
 
 get "/stalls/:stall_id" do
