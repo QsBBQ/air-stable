@@ -3,9 +3,11 @@ require_relative 'config/dotenv'
 require_relative 'models'
 
 
-#Test
-#Cleaning up
-User.destroy
+#Test models
+#clean out db
+User.all.destroy
+Stall.all.destroy
+RentalRequest.all.destroy
 
 p User.count == 0
 #Testing create
@@ -20,17 +22,20 @@ p chuck.name == "Chuck"
 p chuck.email == "cnorris@example.com"
 
 #Test bcrypt
-puts "bycrpt hash #{chuck.password}"
+#puts "bycrpt hash #{chuck.password}"
 p chuck.password == "password"
 
 #Testing validation
-bruce = User.create({:name => "Chuck", :password => "password"})
+bruce = User.create({:name => "Bruce Lee", :password => "password"})
 p bruce.saved? == false
 #Showing the list of errors
 p bruce.errors[:email] == ["Email must not be blank"]
 
+bruce = User.create({:name => "Bruce Lee", :email => "bruce@example.com", :password => "password"})
+
+p User.count == 2
+
 #testing stalls
-Stall.destroy
 
 p Stall.count == 0
 stall = chuck.stalls.create({ :title => "Test Title",
@@ -41,3 +46,15 @@ stall = chuck.stalls.create({ :title => "Test Title",
                        } )
 p Stall.count == 1
 p stall.title == "Test Title"
+
+#Test rental requests
+# request = chuck.stall.rental_requests.create({
+#                                         :date => "02/23/2015",
+#                                         :message => "test message"
+#                                        })
+request = RentalRequest.create({
+                                :date => "02/23/2015",
+                                :message => "test message",
+                                :user => bruce,
+                                :stall => stall
+                              })

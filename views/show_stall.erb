@@ -1,7 +1,9 @@
 
 <h2><%= @stall.title %></h2>
 <p><%= @stall.city %>, <%= @stall.state %> - <%= @stall.zipcode %> - Listed</p>
-<p>by <%= @user.name %></p>
+<p>Listed by <%= @user.name %></p>
 <p><%= @stall.description %> </p>
 
-<button>Request to Rent!</button>
+<form method="GET" action="/stalls/<%=@stall.id%>/rental_request">
+  <button type="submit">Send Request!</button>
+</form>

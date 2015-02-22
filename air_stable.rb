@@ -53,7 +53,30 @@ post "/stalls/new" do
   end
 end
 
+get "/stalls/:stall_id/rental_request" do
+  ensure_logged_in!
+  stall_id = params[:stall_id]
+  @stall = Stall.get(stall_id)
+  @user = User.get(@stall.creator_id)
+
+  erb :rental_request
+end
+
+post "/stalls/:stall_id/rental_request" do
+  ensure_logged_in!
+  stall_id = params[:stall_id]
+  stall = Stall.get(stall_id)
+  @user = User.get(@stall.creator_id)
+  rental_request = current_user.stall.rental_requests.create(params[rental])
+  if rental_request.saved?
+    redirect "/"
+  else
+    erb :rental_request
+  end
+end
+
 get "/stalls/:stall_id" do
+  ensure_logged_in!
   stall_id = params[:stall_id]
   @stall = Stall.get(stall_id)
   @user = User.get(@stall.creator_id)
@@ -62,6 +85,7 @@ get "/stalls/:stall_id" do
 end
 
 get "/user/dashboard" do
+  ensure_logged_in!
   erb :user_dashboard
 end
 
@@ -102,12 +126,6 @@ post "/users/login" do
     session[:login_errors] = 'Access Denied!'
     redirect '/users/login'
   end
-end
-
-get "/users/logout" do
-  #Both logout's are working
-  session.clear
-  redirect "/"
 end
 
 delete "/users/logout" do
