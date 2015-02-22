@@ -32,7 +32,10 @@ p bruce.saved? == false
 p bruce.errors[:email] == ["Email must not be blank"]
 
 bruce = User.create({:name => "Bruce Lee", :email => "bruce@example.com", :password => "password"})
-
+p bruce.id == nil
+bruce = User.first(:email => "bruce@example.com")
+puts "bruces id"
+p bruce.id == !nil
 p User.count == 2
 
 #testing stalls
@@ -48,13 +51,19 @@ p Stall.count == 1
 p stall.title == "Test Title"
 
 #Test rental requests
-# request = chuck.stall.rental_requests.create({
+# request = bruce.stall.rental_requests.create({
 #                                         :date => "02/23/2015",
 #                                         :message => "test message"
 #                                        })
+
+#p bruce.id
+#p stall.id
+
+p RentalRequest.count == 0
 request = RentalRequest.create({
-                                :date => "02/23/2015",
+                                #:date => "02/23/2015",
                                 :message => "test message",
                                 :user => bruce,
                                 :stall => stall
                               })
+p RentalRequest.count == 1
