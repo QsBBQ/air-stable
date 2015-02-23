@@ -31,6 +31,7 @@ end
 
 get "/" do
   @stalls = Stall.all
+  @stall_search = Stall.search(params["query"])
   erb :home
 end
 

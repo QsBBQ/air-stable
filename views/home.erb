@@ -18,6 +18,18 @@
 
 <% if logged_in? %>
   <p>Search bar goes here </p>
+  <form method="GET" action="/">
+    <input type="search" name="query" />
+    <button>Search</button>
+  </form>
+  <% @stall_search.each do |stall| %>
+    <section class="stall">
+      <h3><a href="/stalls/<%= stall.id %>"><%= stall.title %></a></h3>
+      <p><%= stall.description %></p>
+    </section>
+    <hr>
+  <% end %>
+  <hr>
   <% @stalls.each do |stall| %>
     <section class="stall">
       <h3><a href="/stalls/<%= stall.id %>"><%= stall.title %></a></h3>

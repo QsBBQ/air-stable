@@ -31,6 +31,10 @@ class Stall
 
   belongs_to :creator, 'User'
   has n, :rental_request
+
+  def self.search(query)
+    all(:title.like => "%#{query}%")
+  end
 end
 
 class RentalRequest
