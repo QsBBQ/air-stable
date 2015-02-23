@@ -4,7 +4,7 @@
 
 <form method="POST" action="/stalls/<%=@stall.id%>/rental_request">
   Date To Reserve
-  <input id="date name="date" type="date">
+  <input id="date" name="date" type="date">
   <label for="message">Message to user, <%= @user.name %></label><br>
   <textarea type="text" name="message" id="message"></textarea><br>
   <%= erb :_error, { :locals => { :errors => @stall.errors[:message] } } %>

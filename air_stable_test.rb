@@ -63,9 +63,10 @@ p RentalRequest.count == 0
 
 
 request = RentalRequest.create({
-                                #:date => "02/23/2015",
+                                :date => "2015-02-24",
                                 :message => "test message",
                                 :user => bruce,
                                 :stall => stall
                               })
 p RentalRequest.count == 1
+p request.date
