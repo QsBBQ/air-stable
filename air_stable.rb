@@ -69,8 +69,8 @@ post "/stalls/:stall_id/rental_request" do
   stall = Stall.get(stall_id)
   #rental_request = current_user.stall.rental_requests.create(params[rental])
   rental_request = RentalRequest.create({
-                                         :message => params[message],
-                                         :date => params[date],
+                                         :message => params[:message],
+                                         :date => params[:date],
                                          :user => current_user,
                                          :stall => stall
                                        })
@@ -79,7 +79,7 @@ post "/stalls/:stall_id/rental_request" do
   # else
   #   erb :rental_request
   # end
-  redirect "/"
+  #redirect "/"
 end
 
 get "/stalls/:stall_id" do
